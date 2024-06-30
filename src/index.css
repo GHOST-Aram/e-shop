@@ -1,0 +1,58 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.form-title{
+  text-align: center;
+  color: rgb(48, 48, 48);
+}
+
+.price-inputs{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+#product-form{
+  margin: auto;
+}
+
+.product-form{
+  margin-inline: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+
+/* Medium screens (min-width: 601px) and (max-width: 960px) */
+@media (min-width: 601px) and (max-width: 960px) {
+  .product-form{
+    width: 80%;
+    margin: auto;
+  }
+}
+
+/* Large screens (min-width: 961px) and (max-width: 1280px) */
+@media (min-width: 961px) and (max-width: 1280px) {
+  .product-form{
+    width: 60%;
+    margin: auto;
+  }
+}
+
+/* Extra-large screens (min-width: 1281px) */
+@media (min-width: 1281px) {
+  .product-form{
+    width: 60%;
+    margin: auto;
+  }
+}
