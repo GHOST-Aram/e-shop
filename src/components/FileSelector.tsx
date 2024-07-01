@@ -1,7 +1,11 @@
 import React, { useRef, ChangeEvent } from 'react';
 import { Button } from '@mui/material';
 
-const FileUpload: React.FC = () => {
+interface FileSelectorProps {
+  onFileChange: (file: File) => void;
+}
+
+const FileSelector: React.FC<FileSelectorProps> = ({ onFileChange }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleButtonClick = () => {
@@ -11,28 +15,23 @@ const FileUpload: React.FC = () => {
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      console.log('Selected file:', file);
+      onFileChange(file);
     }
   };
 
   return (
-    <div style={{}}>
+    <div>
       <input
         type="file"
         ref={fileInputRef}
         style={{ display: 'none' }}
         onChange={handleFileChange}
       />
-      <Button 
-        variant="contained" 
-        color="primary" 
-        onClick={handleButtonClick} 
-        size='large' 
-    >
-        Add Product Image
+      <Button variant="contained" color="primary" onClick={handleButtonClick}>
+        Select File
       </Button>
     </div>
   );
 };
 
-export default FileUpload;
+export default FileSelector;
