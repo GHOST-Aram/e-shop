@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Box, TextField, Button } from '@mui/material';
-import FileSelector from '../components/FileSelector'; 
+import { Box, TextField, Button, CircularProgress } from '@mui/material';
+import FileSelector from '../components/FileSelector'; // Assuming FileSelector is in the same directory
 
 interface ProductFormState {
   productName: string;
@@ -24,8 +24,10 @@ const ProductForm: React.FC = () => {
     currentPrice: '',
     previousPrice: '',
     description: '',
-    selectedFile: ''
+    selectedFile: '',
   });
+
+  const [loading, setLoading] = useState(false);
 
   const validateForm = () => {
     let valid = true;
@@ -34,7 +36,7 @@ const ProductForm: React.FC = () => {
       currentPrice: '',
       previousPrice: '',
       description: '',
-      selectedFile: ''
+      selectedFile: '',
     };
 
     if (!formState.productName) {
@@ -84,90 +86,103 @@ const ProductForm: React.FC = () => {
       return;
     }
 
+    setLoading(true);
+
     const formData = new FormData();
     formData.append('productName', formState.productName);
     formData.append('currentPrice', formState.currentPrice);
     formData.append('previousPrice', formState.previousPrice);
     formData.append('description', formState.description);
     if (formState.selectedFile) {
-        formData.append('file', formState.selectedFile);
+      formData.append('file', formState.selectedFile);
     }
 
     try {
-        const response = await fetch('http://localhost:3000/products', {
-            method: 'POST',
-            body: formData,
-        });
+      const response = await fetch('http://localhost:3000/products', {
+        method: 'POST',
+        body: formData,
+      });
 
-        if (!response.ok) {
-            throw new Error(`Network response was not ok, status: ${response.status}`);
-        }
+      if (!response.ok) {
+        throw new Error(`Network response was not ok, status: ${response.status}`);
+      }
 
-        const result = await response.json();
-        console.log('Success:', result);
-        // Handle success (e.g., display a success message, reset form, etc.)
+      const result = await response.json();
+      console.log('Success:', result);
+      // Handle success (e.g., display a success message, reset form, etc.)
     } catch (error) {
-        console.error('Error:', error);
-        // Handle error (e.g., display an error message)
+      console.error('Error:', error);
+      // Handle error (e.g., display an error message)
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <form id='product-form' onSubmit={handleSubmit}>
-      <h1 className='form-title'>Create Product</h1>
-      <Box className='product-form'>
-        <TextField
-          placeholder='Product Name'
-          name='productName'
-          label='Product Name'
-          type='text'
-          fullWidth
-          value={formState.productName}
-          onChange={handleInputChange}
-          error={!!errors.productName}
-          helperText={errors.productName}
-        />
-        <FileSelector onFileChange={handleFileChange} />
-        <Box className="price-inputs">
+    <div style={{ position: 'relative', height: '100vh' }}>
+      {loading && (
+        <div style={{
+          position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
+        }}>
+          <CircularProgress />
+        </div>
+      )}
+      <form id='product-form' onSubmit={handleSubmit}>
+        <h1 className='form-title'>Create Product</h1>
+        <Box className='product-form'>
           <TextField
-            placeholder='Current Price'
-            name='currentPrice'
-            label='Current Price'
-            type='number'
+            placeholder='Product Name'
+            name='productName'
+            label='Product Name'
+            type='text'
             fullWidth
-            value={formState.currentPrice}
+            value={formState.productName}
             onChange={handleInputChange}
-            error={!!errors.currentPrice}
-            helperText={errors.currentPrice}
+            error={!!errors.productName}
+            helperText={errors.productName}
           />
-          <TextField
-            placeholder='Previous Price'
-            name='previousPrice'
-            label='Previous Price'
-            type='number'
-            fullWidth
-            value={formState.previousPrice}
-            onChange={handleInputChange}
-            error={!!errors.previousPrice}
-            helperText={errors.previousPrice}
-          />
+          <FileSelector onFileChange={handleFileChange} />
+          <Box className="price-inputs">
+            <TextField
+              placeholder='Current Price'
+              name='currentPrice'
+              label='Current Price'
+              type='number'
+              fullWidth
+              value={formState.currentPrice}
+              onChange={handleInputChange}
+              error={!!errors.currentPrice}
+              helperText={errors.currentPrice}
+            />
+            <TextField
+              placeholder='Previous Price'
+              name='previousPrice'
+              label='Previous Price'
+              type='number'
+              fullWidth
+              value={formState.previousPrice}
+              onChange={handleInputChange}
+              error={!!errors.previousPrice}
+              helperText={errors.previousPrice}
+            />
+            </Box>
+            <TextField
+                placeholder='Product Description'
+                name='description'
+                multiline
+                fullWidth
+                value={formState.description}
+                label={'Product Description'}
+                onChange={handleInputChange}
+                error={!!errors.description}
+                helperText={errors.description}
+            />
+          <Button variant='contained' color='primary' fullWidth size='large' type='submit'>
+            Submit
+          </Button>
         </Box>
-        <TextField
-          placeholder='Product Description'
-          name='description'
-          multiline
-          fullWidth
-          value={formState.description}
-          label={'Product Description'}
-          onChange={handleInputChange}
-          error={!!errors.description}
-          helperText={errors.description}
-        />
-        <Button variant='contained' color='primary' fullWidth size='large' type='submit'>
-          Submit
-        </Button>
-      </Box>
-    </form>
+      </form>
+    </div>
   );
 };
 
