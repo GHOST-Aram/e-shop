@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, TextField, Button, CircularProgress } from '@mui/material';
 import FileSelector from '../components/FileSelector'; // Assuming FileSelector is in the same directory
 
-interface ProductFormState {
+interface ProductproductData {
   productName: string;
   currentPrice: string;
   previousPrice: string;
@@ -11,7 +11,7 @@ interface ProductFormState {
 }
 
 const ProductForm: React.FC = () => {
-  const [formState, setFormState] = useState<ProductFormState>({
+  const [productData, setProductData] = useState<ProductproductData>({
     productName: '',
     currentPrice: '',
     previousPrice: '',
@@ -39,23 +39,23 @@ const ProductForm: React.FC = () => {
       selectedFile: '',
     };
 
-    if (!formState.productName) {
+    if (!productData.productName) {
       newErrors.productName = 'Product Name is required';
       valid = false;
     }
-    if (!formState.currentPrice) {
+    if (!productData.currentPrice) {
       newErrors.currentPrice = 'Current Price is required';
       valid = false;
     }
-    if (!formState.previousPrice) {
+    if (!productData.previousPrice) {
       newErrors.previousPrice = 'Previous Price is required';
       valid = false;
     }
-    if (!formState.description) {
+    if (!productData.description) {
       newErrors.description = 'Description is required';
       valid = false;
     }
-    if (!formState.selectedFile) {
+    if (!productData.selectedFile) {
       newErrors.selectedFile = 'File is required';
       valid = false;
     }
@@ -66,15 +66,15 @@ const ProductForm: React.FC = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormState({
-      ...formState,
+    setProductData({
+      ...productData,
       [name]: value,
     });
   };
 
   const handleFileChange = (file: File) => {
-    setFormState({
-      ...formState,
+    setProductData({
+      ...productData,
       selectedFile: file,
     });
   };
@@ -89,12 +89,12 @@ const ProductForm: React.FC = () => {
     setLoading(true);
 
     const formData = new FormData();
-    formData.append('productName', formState.productName);
-    formData.append('currentPrice', formState.currentPrice);
-    formData.append('previousPrice', formState.previousPrice);
-    formData.append('description', formState.description);
-    if (formState.selectedFile) {
-      formData.append('file', formState.selectedFile);
+    formData.append('productName', productData.productName);
+    formData.append('currentPrice', productData.currentPrice);
+    formData.append('previousPrice', productData.previousPrice);
+    formData.append('description', productData.description);
+    if (productData.selectedFile) {
+      formData.append('file', productData.selectedFile);
     }
 
     try {
@@ -136,7 +136,7 @@ const ProductForm: React.FC = () => {
             label='Product Name'
             type='text'
             fullWidth
-            value={formState.productName}
+            value={productData.productName}
             onChange={handleInputChange}
             error={!!errors.productName}
             helperText={errors.productName}
@@ -149,7 +149,7 @@ const ProductForm: React.FC = () => {
               label='Current Price'
               type='number'
               fullWidth
-              value={formState.currentPrice}
+              value={productData.currentPrice}
               onChange={handleInputChange}
               error={!!errors.currentPrice}
               helperText={errors.currentPrice}
@@ -160,7 +160,7 @@ const ProductForm: React.FC = () => {
               label='Previous Price'
               type='number'
               fullWidth
-              value={formState.previousPrice}
+              value={productData.previousPrice}
               onChange={handleInputChange}
               error={!!errors.previousPrice}
               helperText={errors.previousPrice}
@@ -171,7 +171,7 @@ const ProductForm: React.FC = () => {
                 name='description'
                 multiline
                 fullWidth
-                value={formState.description}
+                value={productData.description}
                 label={'Product Description'}
                 onChange={handleInputChange}
                 error={!!errors.description}
