@@ -1,4 +1,4 @@
-import ProductForm from "./containers/ProductForm"
+import ProductForm from "./products/ProductForm"
 
 function App() {
 
