@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Box, TextField, Button, CircularProgress } from '@mui/material';
 import FileSelector from './containers/FileSelector'; // Assuming FileSelector is in the same directory
+import './style.css'
 
 interface ProductproductData {
   productName: string;
@@ -128,58 +129,60 @@ const ProductForm: React.FC = () => {
 			</div>
 		)}
 		<form id='product-form' onSubmit={handleSubmit}>
-			<h1 className='form-title'>Create Product</h1>
+			<h1 className='text-md font-medium text-center text-slate-500 py-4'>Create Product</h1>
 			<Box className='product-form'>
-			<TextField
-				placeholder='Product Name'
-				name='productName'
-				label='Product Name'
-				type='text'
-				fullWidth
-				value={productData.productName}
-				onChange={handleInputChange}
-				error={!!errors.productName}
-				helperText={errors.productName}
-			/>
-			<FileSelector onFileChange={handleFileChange} />
-			<Box className="price-inputs">
-				<TextField
-				placeholder='Current Price'
-				name='currentPrice'
-				label='Current Price'
-				type='number'
-				fullWidth
-				value={productData.currentPrice}
-				onChange={handleInputChange}
-				error={!!errors.currentPrice}
-				helperText={errors.currentPrice}
-				/>
-				<TextField
-				placeholder='Previous Price'
-				name='previousPrice'
-				label='Previous Price'
-				type='number'
-				fullWidth
-				value={productData.previousPrice}
-				onChange={handleInputChange}
-				error={!!errors.previousPrice}
-				helperText={errors.previousPrice}
-				/>
+				<Box className="flex flex-row gap-4">
+					<TextField
+						placeholder='Product Name'
+						name='productName'
+						label='Product Name'
+						type='text'
+						fullWidth
+						value={productData.productName}
+						onChange={handleInputChange}
+						error={!!errors.productName}
+						helperText={errors.productName}
+					/>
+					<FileSelector onFileChange={handleFileChange} />
 				</Box>
-				<TextField
-					placeholder='Product Description'
-					name='description'
-					multiline
+				<Box className="price-inputs">
+					<TextField
+					placeholder='Current Price'
+					name='currentPrice'
+					label='Current Price'
+					type='number'
 					fullWidth
-					value={productData.description}
-					label={'Product Description'}
+					value={productData.currentPrice}
 					onChange={handleInputChange}
-					error={!!errors.description}
-					helperText={errors.description}
-				/>
-			<Button variant='contained' color='primary' fullWidth size='large' type='submit'>
-				Submit
-			</Button>
+					error={!!errors.currentPrice}
+					helperText={errors.currentPrice}
+					/>
+					<TextField
+					placeholder='Previous Price'
+					name='previousPrice'
+					label='Previous Price'
+					type='number'
+					fullWidth
+					value={productData.previousPrice}
+					onChange={handleInputChange}
+					error={!!errors.previousPrice}
+					helperText={errors.previousPrice}
+					/>
+					</Box>
+					<TextField
+						placeholder='Product Description'
+						name='description'
+						multiline
+						fullWidth
+						value={productData.description}
+						label={'Product Description'}
+						onChange={handleInputChange}
+						error={!!errors.description}
+						helperText={errors.description}
+					/>
+				<Button variant='contained' color='primary' fullWidth size='large' type='submit'>
+					Submit
+				</Button>
 			</Box>
 		</form>
 		</div>

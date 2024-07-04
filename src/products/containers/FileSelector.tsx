@@ -1,5 +1,6 @@
 import React, { useRef, ChangeEvent } from 'react';
 import { Button } from '@mui/material';
+import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
 
 interface FileSelectorProps {
   onFileChange: (file: File) => void;
@@ -28,7 +29,7 @@ const FileSelector: React.FC<FileSelectorProps> = ({ onFileChange }) => {
         onChange={handleFileChange}
       />
       <Button variant="contained" color="primary" onClick={handleButtonClick}>
-        Select File
+        <ImageOutlinedIcon />
       </Button>
     </div>
   );
