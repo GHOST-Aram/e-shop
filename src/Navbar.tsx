@@ -7,6 +7,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 const Navbar = () => {
 
     return (
+        <header>
         <nav className="flex flex-row gap-4 px-16 justify-center 
             p-4 lg:justify-end items-center border-b border-2"
         >
@@ -32,6 +33,7 @@ const Navbar = () => {
             </IconButton>
             </NavLink>
         </nav>
+        </header>
     )
 }
 

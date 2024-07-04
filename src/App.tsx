@@ -1,21 +1,21 @@
 import ProductForm from "./products/ProductForm"
 import Navbar from "./Navbar"
+import Footer from "./Footer"
+import { Routes, Route } from "react-router-dom"
 
 function App() {
 
-  return (
-    <>
-		<header>
+	return (
+		<>
 			<Navbar />
-		</header>
-		<main>
-		<ProductForm />
-		</main>
-		<footer className="font-light text-sm py-4 text-center">
-			Copyright &copy;{ new Date().getFullYear()}
-		</footer>
-    </>
-  )
+			<main>
+				<Routes>
+					<Route path="/products/create" element={<ProductForm />}/>
+				</Routes>
+			</main>
+			<Footer />
+		</>
+	)
 }
 
 export default App
