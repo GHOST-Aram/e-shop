@@ -129,9 +129,11 @@ const ProductForm: React.FC = () => {
 			</div>
 		)}
 		<form id='product-form' onSubmit={handleSubmit}>
-			<h1 className='text-md font-medium text-center text-orange-500 py-4'>CREATE PRODUCT</h1>
+			<h1 className='text-md font-bold text-center text-orange-500 py-4'>
+				CREATE PRODUCT
+			</h1>
 			<Box className='product-form'>
-				<Box className="flex flex-row gap-4">
+				<Box className="flex flex-col md:flex-row lg:flex-row gap-4">
 					<TextField
 						placeholder='Product Name'
 						name='productName'
