@@ -129,7 +129,7 @@ const ProductForm: React.FC = () => {
 			</div>
 		)}
 		<form id='product-form' onSubmit={handleSubmit}>
-			<h1 className='text-md font-medium text-center text-slate-500 py-4'>Create Product</h1>
+			<h1 className='text-md font-medium text-center text-orange-500 py-4'>CREATE PRODUCT</h1>
 			<Box className='product-form'>
 				<Box className="flex flex-row gap-4">
 					<TextField
@@ -142,31 +142,67 @@ const ProductForm: React.FC = () => {
 						onChange={handleInputChange}
 						error={!!errors.productName}
 						helperText={errors.productName}
+						sx={{
+							'& .MuiOutlinedInput-root': {
+									'&.Mui-focused fieldset': {
+										borderColor: '#f97316',
+									},
+								},
+								'& .MuiInputLabel-root': {
+									'&.Mui-focused': {
+										color: '#f97316', // Custom label color on focus
+									},
+								},
+						}}
 					/>
 					<FileSelector onFileChange={handleFileChange} />
 				</Box>
 				<Box className="price-inputs">
 					<TextField
-					placeholder='Current Price'
-					name='currentPrice'
-					label='Current Price'
-					type='number'
-					fullWidth
-					value={productData.currentPrice}
-					onChange={handleInputChange}
-					error={!!errors.currentPrice}
-					helperText={errors.currentPrice}
+						placeholder='Current Price'
+						name='currentPrice'
+						label='Current Price'
+						type='number'
+						fullWidth
+						value={productData.currentPrice}
+						onChange={handleInputChange}
+						error={!!errors.currentPrice}
+						helperText={errors.currentPrice}
+						sx={{
+							'& .MuiOutlinedInput-root': {
+									'&.Mui-focused fieldset': {
+										borderColor: '#f97316',
+									},
+								},
+								'& .MuiInputLabel-root': {
+									'&.Mui-focused': {
+										color: '#f97316', // Custom label color on focus
+									},
+								},
+						}}
 					/>
 					<TextField
-					placeholder='Previous Price'
-					name='previousPrice'
-					label='Previous Price'
-					type='number'
-					fullWidth
-					value={productData.previousPrice}
-					onChange={handleInputChange}
-					error={!!errors.previousPrice}
-					helperText={errors.previousPrice}
+						placeholder='Previous Price'
+						name='previousPrice'
+						label='Previous Price'
+						type='number'
+						fullWidth
+						value={productData.previousPrice}
+						onChange={handleInputChange}
+						error={!!errors.previousPrice}
+						helperText={errors.previousPrice}
+						sx={{
+							'& .MuiOutlinedInput-root': {
+									'&.Mui-focused fieldset': {
+										borderColor: '#f97316',
+									},
+								},
+								'& .MuiInputLabel-root': {
+									'&.Mui-focused': {
+										color: '#f97316', // Custom label color on focus
+									},
+								},
+						}}
 					/>
 					</Box>
 					<TextField
@@ -179,8 +215,33 @@ const ProductForm: React.FC = () => {
 						onChange={handleInputChange}
 						error={!!errors.description}
 						helperText={errors.description}
+						sx={{
+							'& .MuiOutlinedInput-root': {
+									'&.Mui-focused fieldset': {
+										borderColor: '#f97316',
+									},
+								},
+								'& .MuiInputLabel-root': {
+									'&.Mui-focused': {
+										color: '#f97316', // Custom label color on focus
+									},
+								},
+						}}
 					/>
-				<Button variant='contained' color='primary' fullWidth size='large' type='submit'>
+				<Button 
+					variant='contained' 
+					fullWidth 
+					size='large' 
+					type='submit'
+					sx={{
+						bgcolor: '#f97316',
+						color: '#e2e8f0',
+						'&:hover':{
+							bgcolor: '#c2410c',  
+							color: '#94a3b8', 
+						}
+					}}
+				>
 					Submit
 				</Button>
 			</Box>

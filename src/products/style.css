@@ -582,6 +582,10 @@ video {
   gap: 1rem;
 }
 
+.border {
+  border-width: 1px;
+}
+
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -607,4 +611,13 @@ video {
 .text-slate-500 {
   --tw-text-opacity: 1;
   color: rgb(100 116 139 / var(--tw-text-opacity));
+}
+
+.text-orange-500 {
+  --tw-text-opacity: 1;
+  color: rgb(249 115 22 / var(--tw-text-opacity));
+}
+
+.outline {
+  outline-style: solid;
 }

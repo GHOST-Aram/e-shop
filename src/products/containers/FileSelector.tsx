@@ -20,19 +20,31 @@ const FileSelector: React.FC<FileSelectorProps> = ({ onFileChange }) => {
     }
   };
 
-  return (
-    <div>
-      <input
-        type="file"
-        ref={fileInputRef}
-        style={{ display: 'none' }}
-        onChange={handleFileChange}
-      />
-      <Button variant="contained" color="primary" onClick={handleButtonClick}>
-        <ImageOutlinedIcon />
-      </Button>
-    </div>
-  );
+	return (
+		<div>
+		<input
+			type="file"
+			ref={fileInputRef}
+			style={{ display: 'none' }}
+			onChange={handleFileChange}
+		/>
+		<Button 
+			variant="contained" 
+			color="primary" 
+			onClick={handleButtonClick}
+			sx={{
+				bgcolor: '#f97316',
+				color: '#e2e8f0',
+				'&:hover':{
+					bgcolor: '#c2410c',  
+					color: '#94a3b8', 
+				}
+			}}
+		>
+			<ImageOutlinedIcon />
+		</Button>
+		</div>
+	);
 };
 
 export default FileSelector;
